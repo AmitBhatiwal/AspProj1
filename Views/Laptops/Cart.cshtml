@@ -20,11 +20,9 @@
             url: "/Laptops/AddToCart", 
             data: { laptopId: currentIndex },
             success: function (data) {
-                // Handle success response
                 alert('Laptop added to cart successfully!');
             },
             error: function (xhr, status, error) {
-                // Handle error response
                 console.error(xhr.responseText);
             }
         });

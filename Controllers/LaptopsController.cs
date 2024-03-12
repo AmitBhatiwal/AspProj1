@@ -56,7 +56,7 @@ public class LaptopsController : Controller
                     Console.WriteLine("laptopList is null.");
                     return StatusCode(500, "Internal server error. laptopList is null.");
                 }
-                // Find the laptop with the given id and add it to selectedLaptops list
+                
                 var laptop = laptopList.getAllLaptops().FirstOrDefault(l => l.id == laptopId);
 
                 Console.WriteLine("1");
@@ -64,18 +64,18 @@ public class LaptopsController : Controller
                 {
                     Console.WriteLine("2");
                     laptopList.selectedLaptops.Add(laptop);
-                    return Ok(); // Return success response
+                    return Ok(); 
                 }
                 else
                 {
                     Console.WriteLine("3");
-                    return NotFound(); // Return not found response if laptop with given id is not found
+                    return NotFound(); 
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("4");
-                return StatusCode(500, ex.Message); // Return internal server error response
+                return StatusCode(500, ex.Message); 
             }
     }
 
