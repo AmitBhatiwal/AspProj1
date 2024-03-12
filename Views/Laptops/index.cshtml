@@ -14,17 +14,14 @@
 
 <script>
     function addToCart(currentIndex) {
-    
         $.ajax({
             type: "POST",
             url: "/Laptops/AddToCart", 
             data: { laptopId: currentIndex },
             success: function (data) {
-                // Handle success response
-                alert('Laptop added to cart successfully!');
+                alert('Laptop selected');
             },
             error: function (xhr, status, error) {
-                // Handle error response
                 console.error(xhr.responseText);
             }
         });
@@ -47,7 +44,7 @@
                         <div class="card-content">
                             <h3>@laptop.brandName</h3>
                             <p>@laptop.variantName</p>
-                            <button class="btn" onclick="addToCart('@laptop.id.ToString()')">Add to cart</button>
+                            <button class="btn" onclick="addToCart('@laptop.id.ToString()')">Select Laptop</button>
                         </div>
                     </div>
                 </td>

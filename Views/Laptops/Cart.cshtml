@@ -34,6 +34,7 @@
 <body>
     <table>
         <tr>
+            @if(Model.selectedLaptops.Count>0) {
             @foreach (var laptop in Model.selectedLaptops)
             {
                 @:</tr><tr>
@@ -66,6 +67,9 @@
                         <p class="content_p">Ram Upgrade: @laptop.ramUpGradePossible</p>
                     </div>
                 </td>
+            }
+            } else {
+                 <p>Did you forget to select some laptop.Hnnnnn......?????????????</p>   
             }
         </tr>
     </table>
