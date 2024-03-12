@@ -1,0 +1,72 @@
+
+@model AspProj1.Models.Laptops
+@{
+    ViewData["Title"] = "Laotops ....";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card with Image and Button</title>
+    <link rel="stylesheet" href="~/css/cart.css" asp-append-version="true">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    function addToCart(currentIndex) {
+    
+        $.ajax({
+            type: "POST",
+            url: "/Laptops/AddToCart", 
+            data: { laptopId: currentIndex },
+            success: function (data) {
+                // Handle success response
+                alert('Laptop added to cart successfully!');
+            },
+            error: function (xhr, status, error) {
+                // Handle error response
+                console.error(xhr.responseText);
+            }
+        });
+    }
+</script>
+
+<body>
+    <table>
+        <tr>
+            @foreach (var laptop in Model.selectedLaptops)
+            {
+                @:</tr><tr>
+                
+                <td>
+                    <div class="card">
+                        <img class="card-image" src="@laptop.imageLink" alt="Image">
+                        <div class="card-content">
+                            <h3>@laptop.brandName</h3>
+                            <p>@laptop.variantName</p>
+                            
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <p>    sdfsffdfds </p>
+                </td>
+                <td class="contentDetail">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3>@laptop.brandName</h3>
+                            <p>@laptop.variantName</p>
+                        </div>
+                        <p class="content_p">Price : @laptop.price $</p>
+                        <p class="content_p">Processor: @laptop.processor</p>
+                        <p class="content_p">CPU Frequency: @laptop.cpuFrequency</p>
+                        <p class="content_p">RAM : @laptop.ramGb GB</p>
+                        <p class="content_p">Graphic Card : @laptop.graphicRAM GB</p>
+                        <p class="content_p">Graphic card type : @laptop.graphicBrand</p>
+                        <p class="content_p">Ram Upgrade: @laptop.ramUpGradePossible</p>
+                    </div>
+                </td>
+            }
+        </tr>
+    </table>
+</body>

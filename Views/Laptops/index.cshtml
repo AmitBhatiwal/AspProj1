@@ -1,0 +1,57 @@
+
+@model AspProj1.Models.Laptops
+@{
+    ViewData["Title"] = "Laotops ....";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card with Image and Button</title>
+    <link rel="stylesheet" href="~/css/indexPageLaptop.css" asp-append-version="true">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    function addToCart(currentIndex) {
+    
+        $.ajax({
+            type: "POST",
+            url: "/Laptops/AddToCart", 
+            data: { laptopId: currentIndex },
+            success: function (data) {
+                // Handle success response
+                alert('Laptop added to cart successfully!');
+            },
+            error: function (xhr, status, error) {
+                // Handle error response
+                console.error(xhr.responseText);
+            }
+        });
+    }
+</script>
+
+<body>
+    <table>
+        <tr>
+            @foreach (var laptop in Model.allLaptops)
+            {
+                if (Model.allLaptops.IndexOf(laptop) % 3 == 0)
+                {
+                    @:</tr><tr>
+                }
+
+                <td>
+                    <div class="card">
+                        <img class="card-image" src="@laptop.imageLink" alt="Image">
+                        <div class="card-content">
+                            <h3>@laptop.brandName</h3>
+                            <p>@laptop.variantName</p>
+                            <button class="btn" onclick="addToCart('@laptop.id.ToString()')">Add to cart</button>
+                        </div>
+                    </div>
+                </td>
+            }
+        </tr>
+    </table>
+</body>
